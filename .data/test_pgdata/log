@@ -1,0 +1,55 @@
+2026-11-14 05:16:28.914 GMT [52744] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 05:16:28.926 GMT [52744] LOG:  listening on IPv4 address "127.0.0.1", port 64883
+2026-11-14 05:16:29.077 GMT [47608] LOG:  database system was shut down at 2026-11-14 05:16:23 GMT
+2026-11-14 05:16:29.197 GMT [52744] LOG:  database system is ready to accept connections
+2026-11-14 05:16:35.714 GMT [52744] LOG:  received fast shutdown request
+2026-11-14 05:16:35.718 GMT [52744] LOG:  aborting any active transactions
+2026-11-14 05:16:35.732 GMT [52744] LOG:  background worker "logical replication launcher" (PID 38816) exited with exit code 1
+2026-11-14 05:16:35.733 GMT [57368] LOG:  shutting down
+2026-11-14 05:16:35.736 GMT [57368] LOG:  checkpoint starting: shutdown immediate
+2026-11-14 05:16:36.085 GMT [57368] LOG:  checkpoint complete: wrote 187 buffers (1.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.078 s, sync=0.244 s, total=0.352 s; sync files=128, longest=0.004 s, average=0.002 s; distance=779 kB, estimate=779 kB; lsn=0/15450E0, redo lsn=0/15450E0
+2026-11-14 05:16:36.305 GMT [52744] LOG:  database system is shut down
+2026-11-14 05:16:49.766 GMT [45640] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 05:16:49.777 GMT [45640] LOG:  listening on IPv4 address "127.0.0.1", port 58530
+2026-11-14 05:16:49.912 GMT [56380] LOG:  database system was shut down at 2026-11-14 05:16:36 GMT
+2026-11-14 05:16:50.038 GMT [45640] LOG:  database system is ready to accept connections
+2026-11-14 05:16:55.931 GMT [45640] LOG:  received fast shutdown request
+2026-11-14 05:16:55.936 GMT [45640] LOG:  aborting any active transactions
+2026-11-14 05:16:55.950 GMT [45640] LOG:  background worker "logical replication launcher" (PID 18132) exited with exit code 1
+2026-11-14 05:16:55.950 GMT [34744] LOG:  shutting down
+2026-11-14 05:16:55.953 GMT [34744] LOG:  checkpoint starting: shutdown immediate
+2026-11-14 05:16:56.047 GMT [34744] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.024 s, sync=0.043 s, total=0.097 s; sync files=15, longest=0.007 s, average=0.003 s; distance=8 kB, estimate=8 kB; lsn=0/15473D8, redo lsn=0/15473D8
+2026-11-14 05:16:56.076 GMT [45640] LOG:  database system is shut down
+2026-11-14 05:17:19.544 GMT [23712] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 05:17:19.555 GMT [23712] LOG:  listening on IPv4 address "127.0.0.1", port 65357
+2026-11-14 05:17:19.695 GMT [56384] LOG:  database system was shut down at 2026-11-14 05:16:56 GMT
+2026-11-14 05:17:19.820 GMT [23712] LOG:  database system is ready to accept connections
+2026-11-14 05:17:26.247 GMT [23712] LOG:  received fast shutdown request
+2026-11-14 05:17:26.251 GMT [23712] LOG:  aborting any active transactions
+2026-11-14 05:17:26.265 GMT [23712] LOG:  background worker "logical replication launcher" (PID 18380) exited with exit code 1
+2026-11-14 05:17:26.266 GMT [50940] LOG:  shutting down
+2026-11-14 05:17:26.269 GMT [50940] LOG:  checkpoint starting: shutdown immediate
+2026-11-14 05:17:26.443 GMT [50940] LOG:  checkpoint complete: wrote 116 buffers (0.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.061 s, sync=0.085 s, total=0.177 s; sync files=41, longest=0.004 s, average=0.003 s; distance=377 kB, estimate=377 kB; lsn=0/15A59E8, redo lsn=0/15A59E8
+2026-11-14 05:17:26.502 GMT [23712] LOG:  database system is shut down
+2026-11-14 05:17:44.505 GMT [42680] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 05:17:44.515 GMT [42680] LOG:  listening on IPv4 address "127.0.0.1", port 58246
+2026-11-14 05:17:44.654 GMT [52080] LOG:  database system was shut down at 2026-11-14 05:17:26 GMT
+2026-11-14 05:17:44.775 GMT [42680] LOG:  database system is ready to accept connections
+2026-11-14 05:17:47.655 GMT [42680] LOG:  received fast shutdown request
+2026-11-14 05:17:47.659 GMT [42680] LOG:  aborting any active transactions
+2026-11-14 05:17:47.672 GMT [42680] LOG:  background worker "logical replication launcher" (PID 55572) exited with exit code 1
+2026-11-14 05:17:47.675 GMT [47644] LOG:  shutting down
+2026-11-14 05:17:47.677 GMT [47644] LOG:  checkpoint starting: shutdown immediate
+2026-11-14 05:17:47.763 GMT [47644] LOG:  checkpoint complete: wrote 18 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.023 s, sync=0.038 s, total=0.089 s; sync files=17, longest=0.005 s, average=0.003 s; distance=10 kB, estimate=10 kB; lsn=0/15A8380, redo lsn=0/15A8380
+2026-11-14 05:17:47.791 GMT [42680] LOG:  database system is shut down
+2026-11-14 05:53:53.889 GMT [3600] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 05:53:53.900 GMT [3600] LOG:  listening on IPv4 address "127.0.0.1", port 51767
+2026-11-14 05:53:54.051 GMT [52204] LOG:  database system was shut down at 2026-11-14 05:17:47 GMT
+2026-11-14 05:53:54.177 GMT [3600] LOG:  database system is ready to accept connections
+2026-11-14 05:53:57.108 GMT [3600] LOG:  received fast shutdown request
+2026-11-14 05:53:57.113 GMT [3600] LOG:  aborting any active transactions
+2026-11-14 05:53:57.127 GMT [3600] LOG:  background worker "logical replication launcher" (PID 17072) exited with exit code 1
+2026-11-14 05:53:57.128 GMT [51992] LOG:  shutting down
+2026-11-14 05:53:57.131 GMT [51992] LOG:  checkpoint starting: shutdown immediate
+2026-11-14 05:53:57.226 GMT [51992] LOG:  checkpoint complete: wrote 18 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.029 s, sync=0.039 s, total=0.099 s; sync files=17, longest=0.004 s, average=0.003 s; distance=13 kB, estimate=13 kB; lsn=0/15ABAA0, redo lsn=0/15ABAA0
+2026-11-14 05:53:57.250 GMT [3600] LOG:  database system is shut down

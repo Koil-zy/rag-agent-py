@@ -1,0 +1,14 @@
+2026-11-14 07:52:59.473 GMT [45544] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 07:52:59.483 GMT [45544] LOG:  listening on IPv4 address "127.0.0.1", port 55433
+2026-11-14 07:52:59.620 GMT [45480] LOG:  database system was shut down at 2026-11-14 07:52:48 GMT
+2026-11-14 07:52:59.739 GMT [45544] LOG:  database system is ready to accept connections
+2026-11-14 08:06:09.988 GMT [41772] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-14 08:06:09.999 GMT [41772] LOG:  listening on IPv4 address "127.0.0.1", port 55433
+2026-11-14 08:06:10.133 GMT [45604] LOG:  database system was interrupted; last known up at 2026-11-14 07:52:59 GMT
+2026-11-14 08:06:11.818 GMT [45604] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-11-14 08:06:11.847 GMT [45604] LOG:  redo starts at 0/15C3188
+2026-11-14 08:06:11.872 GMT [45604] LOG:  invalid record length at 0/15C7530: expected at least 24, got 0
+2026-11-14 08:06:11.872 GMT [45604] LOG:  redo done at 0/15C7508 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.02 s
+2026-11-14 08:06:11.896 GMT [57468] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-11-14 08:06:11.960 GMT [57468] LOG:  checkpoint complete: wrote 18 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.034 s, total=0.067 s; sync files=17, longest=0.003 s, average=0.002 s; distance=17 kB, estimate=17 kB; lsn=0/15C7530, redo lsn=0/15C7530
+2026-11-14 08:06:12.057 GMT [41772] LOG:  database system is ready to accept connections

@@ -1,0 +1,44 @@
+# 文档清单：acl 为 public 时全员可检索，guide 时仅 leader 可检索
+documents:
+  - file: FIN-001-费用报销管理制度.md
+    code: FIN-001
+    title: 费用报销管理制度
+    category: 报销
+    acl: public
+    effective: 2025-03-01
+  - file: HR-001-请假与考勤管理制度.md
+    code: HR-001
+    title: 请假与考勤管理制度
+    category: 请假
+    acl: public
+    effective: 2025-01-01
+  - file: TRV-001-差旅费用管理制度.md
+    code: TRV-001
+    title: 差旅费用管理制度
+    category: 差旅
+    acl: public
+    effective: 2025-04-01
+  - file: PUR-001-采购管理制度.md
+    code: PUR-001
+    title: 采购管理制度
+    category: 采购
+    acl: public
+    effective: 2025-02-01
+  - file: SEC-001-信息安全与保密制度.md
+    code: SEC-001
+    title: 信息安全与保密制度
+    category: 信息安全
+    acl: public
+    effective: 2025-05-01
+  - file: HR-002-员工手册.md
+    code: HR-002
+    title: 员工手册
+    category: 员工手册
+    acl: public
+    effective: 2024-12-01
+  - file: EXE-001-干部差旅与审批权限规定.md
+    code: EXE-001
+    title: 干部差旅与审批权限规定
+    category: 差旅
+    acl: guide
+    effective: 2025-06-01

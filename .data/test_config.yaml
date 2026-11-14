@@ -1,0 +1,97 @@
+app:
+  host: 127.0.0.1
+  name: 制度知识助理
+  port: 8000
+captcha:
+  length: 4
+  ttl_seconds: 120
+chunking:
+  chunk_overlap: 40
+  chunk_size: 320
+  min_chunk_chars: 30
+database:
+  embedded_data_dir: D:\code\ai-rag-agent\.data\test_pgdata
+  embedded_port: 55433
+  schema: public
+  url: ''
+embedding:
+  api_key: ''
+  base_url: http://127.0.0.1:11434
+  batch_size: 8
+  dimension: 1024
+  model: test-local-hash
+  provider: local_hash
+  timeout: 90
+llm:
+  api_key: ''
+  base_url: http://127.0.0.1:11434
+  disable_thinking: true
+  max_tokens: 512
+  model: deepseek-r1:1.5b
+  num_ctx: 8192
+  provider: ollama
+  temperature: 0
+  timeout: 180
+query_guard:
+  domain_keywords:
+  - 报销
+  - 发票
+  - 请假
+  - 年假
+  - 病假
+  - 出差
+  - 差旅
+  - 住宿
+  - 采购
+  - 供应商
+  - 合同
+  - 加班
+  - 考勤
+  - 密码
+  - 保密
+  - 信息安全
+  - 制度
+  - 流程
+  - 审批
+  - 标准
+  - 规定
+  - 补贴
+  - 培训
+  - 入职
+  - 离职
+  - 转正
+  max_length: 200
+  min_length: 4
+  min_unique_ratio: 0.35
+registration:
+  leader_invite_codes:
+  - LEADER-INVITE-2026
+retrieval:
+  candidate_k: 20
+  lexical_weight: 0.28
+  max_sources: 4
+  min_score: 0.58
+  top_k: 5
+security:
+  login_lock_minutes: 5
+  login_max_failures: 5
+  pbkdf2_iterations: 200000
+  token_secret: ''
+  token_ttl_minutes: 720
+server:
+  static_dir: web
+stream_guard:
+  banned_words: []
+  check_unsupported_numbers: true
+  citation_tolerance: 0.34
+  enabled: true
+  leak_patterns:
+  - 系统提示词
+  - system prompt
+  - 忽略以上指令
+  - 忽略之前的指令
+  - 以下是你的设定
+  - 我的设定是
+  on_citation_miss: annotate
+  stride: 40
+  window_size: 80

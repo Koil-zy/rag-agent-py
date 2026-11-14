@@ -1,0 +1,120 @@
+app:
+  name: 制度知识助理
+  host: 127.0.0.1
+  port: 8000
+
+database:
+  # 留空 = 使用内嵌 pgserver（本地演示免安装）；线上填写 postgresql://user:pass@host:5432/db
+  url: ""
+  embedded_data_dir: .data/pgdata
+  embedded_port: 55432
+  schema: public
+
+# 向量模型：provider 可选 ollama / openai / local_hash
+# 上线切换模型只需改这里，代码不写死
+embedding:
+  provider: ollama
+  model: bge-m3
+  dimension: 1024
+  base_url: http://127.0.0.1:11434
+  api_key: ""
+  batch_size: 8
+  timeout: 90
+
+# 问答模型：provider 可选 ollama / openai（OpenAI 兼容协议）
+llm:
+  provider: ollama
+  model: deepseek-r1:1.5b
+  base_url: http://127.0.0.1:11434
+  api_key: ""
+  temperature: 0
+  num_ctx: 8192
+  max_tokens: 512
+  disable_thinking: true
+  timeout: 180
+
+retrieval:
+  top_k: 5
+  candidate_k: 20
+  # 混合检索得分阈值，低于该值视为“未找到相关依据”
+  min_score: 0.58
+  lexical_weight: 0.28
+  max_sources: 4
+
+chunking:
+  chunk_size: 500
+  chunk_overlap: 80
+  min_chunk_chars: 30
+
+# 用户提问规范性校验
+query_guard:
+  min_length: 4
+  max_length: 200
+  min_unique_ratio: 0.35
+  domain_keywords:
+    - 报销
+    - 发票
+    - 请假
+    - 年假
+    - 病假
+    - 出差
+    - 差旅
+    - 住宿
+    - 采购
+    - 供应商
+    - 合同
+    - 加班
+    - 考勤
+    - 密码
+    - 保密
+    - 信息安全
+    - 制度
+    - 流程
+    - 审批
+    - 标准
+    - 规定
+    - 补贴
+    - 培训
+    - 入职
+    - 离职
+    - 转正
+
+# 流式输出滑动窗口检测
+stream_guard:
+  enabled: true
+  window_size: 80
+  stride: 40
+  # 句子未标注引用时的处理：annotate（末尾提示）/ block（中止并替换）
+  on_citation_miss: annotate
+  citation_tolerance: 0.34
+  # 除了资料里出现的数字外，模型不得编造金额/天数/比例
+  check_unsupported_numbers: true
+  # 命中以下内容直接中止输出
+  leak_patterns:
+    - 系统提示词
+    - system prompt
+    - 忽略以上指令
+    - 忽略之前的指令
+    - 以下是你的设定
+    - 我的设定是
+  banned_words: []
+
+security:
+  # 留空则读取 SECRET_KEY 环境变量，否则自动生成并保存到 .data/secret.key
+  token_secret: ""
+  token_ttl_minutes: 720
+  pbkdf2_iterations: 200000
+  login_max_failures: 5
+  login_lock_minutes: 5
+
+# 注册：员工可直接注册；领导注册需管理员线下发放的邀请码
+registration:
+  leader_invite_codes:
+    - LEADER-INVITE-2026
+
+captcha:
+  length: 4
+  ttl_seconds: 120
+
+server:
+  static_dir: web

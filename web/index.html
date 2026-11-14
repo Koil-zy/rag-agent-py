@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>制度知识助理 · 企业内部问答</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-mark">知</span>
+        <span>知识助理<small>企业制度 · RAG 问答</small></span>
+      </a>
+      <nav class="nav">
+        <a class="active" href="/">首页</a>
+        <a href="/#chatBody">制度问答</a>
+        <a href="/admin" id="adminLink" class="hidden">管理后台</a>
+      </nav>
+      <div class="search">
+        <input id="globalSearch" type="text" placeholder="搜索制度问题，如：出差住宿标准是多少" autocomplete="off" />
+        <button class="go" id="searchBtn" title="提问">&#128269;</button>
+      </div>
+      <div class="header-right">
+        <span class="role-pill" id="roleText">员工视图</span>
+        <div class="avatar" id="avatar">员</div>
+        <button class="ghost-btn" id="logoutBtn">退出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="danmaku">
+        <span style="top:16px;animation-duration:24s;animation-delay:-3s">发票丢了还能报销吗？</span>
+        <span style="top:58px;animation-duration:29s;animation-delay:-13s">年假可以顺延到明年吗？</span>
+        <span style="top:100px;animation-duration:21s;animation-delay:-8s">出差住宿标准是多少？</span>
+        <span style="top:142px;animation-duration:33s;animation-delay:-20s">采购多少金额需要比价？</span>
+        <span style="top:180px;animation-duration:26s;animation-delay:-16s">病假工资怎么算？</span>
+      </div>
+      <div class="hero-content">
+        <span class="hero-tag">内部知识库 · 7 份制度已接入</span>
+        <h1>制度问题，问一句就有依据</h1>
+        <p>报销、请假、差旅、采购、信息安全，一次问清。每个结论都标注原文来源，找不到依据时直接告诉你，不编造。</p>
+        <div class="hero-actions">
+          <button class="btn solid" data-ask="出差住宿费标准是多少？">试试提问</button>
+          <button class="btn" data-ask="年假有几天，可以顺延吗？">查看年假规定</button>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="sheet">
+          <div class="line w60"></div>
+          <div class="line"></div>
+          <div class="line w80"></div>
+          <div class="line w40"></div>
+          <div class="stamp">制度</div>
+        </div>
+        <div class="sheet">
+          <div class="line w40"></div>
+          <div class="line"></div>
+          <div class="line w60"></div>
+          <div class="hl"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="chips">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div class="chip-icon orange">荐</div>
+        <span class="chip-icon-label">推荐</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div class="chip-icon red">热</div>
+        <span class="chip-icon-label">热门</span>
+      </div>
+      <button class="chip active">全部制度</button>
+      <button class="chip" data-ask="报销的流程和审批权限是什么？">报销</button>
+      <button class="chip" data-ask="年假有几天，可以顺延吗？">请假</button>
+      <button class="chip" data-ask="出差住宿费标准是多少？">差旅</button>
+      <button class="chip" data-ask="采购多少金额需要三家比价？">采购</button>
+      <button class="chip" data-ask="公司账号密码有什么要求？">信息安全</button>
+      <button class="chip" data-ask="试用期多长时间，工资怎么算？">员工手册</button>
+    </div>
+
+    <div class="layout">
+      <section class="panel chat-panel">
+        <div class="chat-head">
+          <span class="dot"></span>
+          <h2>制度问答</h2>
+          <span class="meta" id="chatMeta">流式输出 · 滑动窗口合规检测</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+          <div class="welcome">
+            <div class="mark">知</div>
+            <h3>你好，我是制度知识助理</h3>
+            <p>覆盖报销、请假、差旅、采购、信息安全等制度，回答均标注来源。</p>
+            <div class="welcome-grid">
+              <div class="welcome-card" data-ask="出差住宿费标准是多少？">
+                <b>差旅住宿</b><span>出差住宿费标准是多少？</span>
+              </div>
+              <div class="welcome-card" data-ask="年假有几天，可以顺延吗？">
+                <b>年假规则</b><span>年假有几天，可以顺延吗？</span>
+              </div>
+              <div class="welcome-card" data-ask="发票丢失了怎么报销？">
+                <b>报销票据</b><span>发票丢失了怎么报销？</span>
+              </div>
+              <div class="welcome-card" data-ask="员工离职需要提前多久申请？">
+                <b>离职流程</b><span>员工离职需要提前多久申请？</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="composer">
+          <div class="suggest">
+            <button data-ask="业务招待费人均标准是多少？">业务招待费人均标准</button>
+            <button data-ask="病假需要提供什么材料？">病假材料</button>
+            <button data-ask="采购合同必须使用公司模板吗？">采购合同</button>
+            <button data-ask="私自发机密数据会怎么处理？">数据外发</button>
+          </div>
+          <div class="input-row">
+            <textarea id="questionInput" placeholder="输入你的问题，例如：出差住宿标准是多少？" rows="1"></textarea>
+            <button class="send-btn" id="sendBtn">发送</button>
+          </div>
+          <div class="composer-hint">
+            <span>Enter 发送 / Shift + Enter 换行</span>
+            <span>回答仅依据公司制度文档</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel side-panel">
+        <div class="side-head">
+          <h2>信息来源 TOP</h2>
+          <span class="count" id="sourceCount">0</span>
+        </div>
+        <div class="side-body" id="sourceList">
+          <div class="side-empty">提问后，命中的制度原文会出现在这里。<br />点击引用角标可定位到原文。</div>
+        </div>
+        <div class="side-foot">
+          检索前已按权限过滤：员工仅见 public，领导可见 public + guide。<br />
+          相似度低于阈值时直接返回「未找到相关依据」，不调用大模型。
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/assets/api.js"></script>
+  <script src="/assets/chat.js"></script>
+</body>
+</html>

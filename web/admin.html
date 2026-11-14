@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理后台 · 制度知识助理</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <span class="logo-mark">知</span>
+        <span>知识助理<small>管理后台</small></span>
+      </a>
+      <nav class="nav">
+        <a href="/">返回问答</a>
+        <a class="active" href="/admin">文档与审计</a>
+      </nav>
+      <div class="header-right">
+        <span class="role-pill leader" id="operator">-</span>
+        <button class="ghost-btn" id="logoutBtn">退出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">知识库管理</h1>
+    <p class="page-sub">文档入库采用「章节切片 + 向量化」，重新入库只对内容变化的文档生效；标签变更会立即影响检索隔离。</p>
+
+    <div class="admin-grid">
+      <div style="display:grid;gap:16px">
+        <section class="card">
+          <h3><span class="bar"></span>制度文档台账
+            <button class="ghost-btn" id="reindexBtn" style="margin-left:auto">重新入库</button>
+          </h3>
+          <table class="doc-table">
+            <thead>
+              <tr><th>编号</th><th>文档名称</th><th>分类</th><th>标签</th><th>切片</th><th>生效日期</th></tr>
+            </thead>
+            <tbody id="docsBody">
+              <tr><td colspan="6" style="color:var(--muted)">加载中…</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card">
+          <h3><span class="bar"></span>合规拦截与校验事件</h3>
+          <div id="events"><div class="side-empty">加载中…</div></div>
+        </section>
+      </div>
+
+      <div style="display:grid;gap:16px;align-content:start">
+        <section class="card">
+          <h3><span class="bar"></span>运行配置</h3>
+          <div id="health"><div class="side-empty">加载中…</div></div>
+        </section>
+        <section class="card">
+          <h3><span class="bar"></span>知识库规模</h3>
+          <div id="stats"></div>
+        </section>
+        <section class="card" style="font-size:12px;line-height:1.9;color:var(--text)">
+          <h3><span class="bar"></span>操作提示</h3>
+          文档放入 <code>docs/</code> 并在 <code>docs/manifest.yaml</code> 登记编号、分类与 acl 标签后，点击「重新入库」。<br />
+          模型、阈值、Guard 窗口均在 <code>config.yaml</code> 中调整，改完重启服务即可生效。
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="/assets/api.js"></script>
+  <script src="/assets/admin.js"></script>
+</body>
+</html>

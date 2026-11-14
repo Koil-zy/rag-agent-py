@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>登录 / 注册 · 制度知识助理</title>
+  <link rel="stylesheet" href="/assets/style.css?v=20261114" />
+</head>
+<body class="auth-body">
+  <div class="auth-shell">
+    <section class="auth-brand">
+      <a class="logo" href="/">
+        <span class="logo-mark">知</span>
+        <span>知识助理<small>企业内部制度问答</small></span>
+      </a>
+      <h1>让制度问题<br /><em>一问就有依据</em></h1>
+      <p>接入公司报销、请假、差旅、采购与信息安全制度。回答逐句标注来源，没有依据时明确告知，绝不编造。</p>
+      <div class="auth-points">
+        <div class="auth-point">
+          <span class="ico">检</span>
+          <div><b>来源可追溯</b>每条结论附制度原文与相似度</div>
+        </div>
+        <div class="auth-point">
+          <span class="ico">权</span>
+          <div><b>文档分级隔离</b>public 全员可见，guide 仅领导可查</div>
+        </div>
+        <div class="auth-point">
+          <span class="ico">稳</span>
+          <div><b>流式合规检测</b>滑动窗口实时拦截编造与泄密</div>
+        </div>
+      </div>
+      <div class="auth-quote">
+        <b>提示</b> 密码 ≥8 位，须包含大写字母、小写字母、数字与特殊符号。登录使用手机号作为账号。
+      </div>
+    </section>
+
+    <section class="auth-main">
+      <div class="auth-card">
+        <div class="brand-mini"><span class="logo-mark">知</span>知识助理</div>
+        <div class="tabs">
+          <div class="tab active" data-tab="login">登录</div>
+          <div class="tab" data-tab="register">注册</div>
+        </div>
+
+        <div class="form-error" id="formError"></div>
+
+        <form id="loginForm" onsubmit="return false;">
+          <div class="field">
+            <label for="loginPhone">手机号</label>
+            <input class="input" id="loginPhone" maxlength="11" placeholder="请输入 11 位手机号" autocomplete="username" />
+          </div>
+          <div class="field">
+            <label for="loginPwd">密码</label>
+            <input class="input" id="loginPwd" type="password" placeholder="请输入密码" autocomplete="current-password" />
+          </div>
+          <div class="field">
+            <label for="loginCode">图片验证码</label>
+            <div class="captcha-row">
+              <input class="input" id="loginCode" maxlength="6" placeholder="输入右侧字符" />
+              <img class="captcha-img" id="loginCaptchaImg" alt="验证码" title="点击刷新" />
+            </div>
+            <div class="captcha-tip">看不清？点击图片刷新，验证码 120 秒内有效</div>
+          </div>
+          <button class="btn-primary" id="loginBtn" type="button">登 录</button>
+          <div class="demo-tip">
+            演示账号：领导 <code>13800000001 / Boss@2025</code>，员工 <code>13800000002 / Staff@2025</code>
+            <br /><a href="#" data-fill="13800000002|Staff@2025">填入员工账号</a> ·
+            <a href="#" data-fill="13800000001|Boss@2025">填入领导账号</a>
+          </div>
+          <div class="auth-foot">登录即表示同意公司信息安全与保密制度 · <a href="/">返回首页</a></div>
+        </form>
+
+        <form id="registerForm" class="hidden" onsubmit="return false;">
+          <div class="field">
+            <label for="regPhone">手机号</label>
+            <input class="input" id="regPhone" maxlength="11" placeholder="将作为登录账号" autocomplete="username" />
+          </div>
+          <div class="field">
+            <label>注册身份</label>
+            <div class="role-picker">
+              <label class="role-option">
+                <input type="radio" name="regRole" value="employee" checked />
+                <span>员工</span>
+                <small>可检索 public 制度</small>
+              </label>
+              <label class="role-option">
+                <input type="radio" name="regRole" value="leader" />
+                <span>管理人员</span>
+                <small>可检索 public + guide</small>
+              </label>
+            </div>
+          </div>
+          <div class="field hidden" id="inviteField">
+            <label for="regInvite">领导邀请码</label>
+            <input class="input" id="regInvite" maxlength="64" placeholder="请向管理员索取邀请码" />
+            <div class="captcha-tip">邀请码由管理员线下发放，校验通过后才可注册管理人员账号</div>
+          </div>
+          <div class="field">
+            <label for="regName">姓名 / 昵称（可选）</label>
+            <input class="input" id="regName" maxlength="16" placeholder="用于回答页展示" />
+          </div>
+          <div class="field">
+            <label for="regPwd">设置密码</label>
+            <input class="input" id="regPwd" type="password" placeholder="≥8 位，含大小写、数字、特殊符号" autocomplete="new-password" />
+            <div class="pwd-meter" id="pwdMeter"><i></i><i></i><i></i><i></i></div>
+            <div class="pwd-hint" id="pwdHint">需 ≥8 位，同时包含大小写字母、数字与特殊符号</div>
+          </div>
+          <div class="field">
+            <label for="regConfirm">确认密码</label>
+            <input class="input" id="regConfirm" type="password" placeholder="再次输入密码" autocomplete="new-password" />
+          </div>
+          <div class="field">
+            <label for="regCode">图片验证码</label>
+            <div class="captcha-row">
+              <input class="input" id="regCode" maxlength="6" placeholder="输入右侧字符" />
+              <img class="captcha-img" id="regCaptchaImg" alt="验证码" title="点击刷新" />
+            </div>
+            <div class="captcha-tip">看不清？点击图片刷新，验证码 120 秒内有效</div>
+          </div>
+          <button class="btn-primary" id="registerBtn" type="button">注册并登录</button>
+          <div class="auth-foot">员工账号仅可检索 public 级制度文档；管理人员账号需邀请码，可检索 public + guide。</div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="/assets/api.js?v=20261114"></script>
+  <script src="/assets/login.js?v=20261114"></script>
+</body>
+</html>
