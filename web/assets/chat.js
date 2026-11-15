@@ -25,6 +25,23 @@
   roleText.className = "role-pill" + (user.role === "leader" ? " leader" : "");
   if (user.role === "leader") adminLink.classList.remove("hidden");
 
+  // 展示当前账号的注册时间
+  const sinceEl = document.getElementById("userSince");
+  function userSinceText(value) {
+    if (!value) return "";
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return "";
+    const p = (n) => String(n).padStart(2, "0");
+    return `注册于 ${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+  }
+  sinceEl.textContent = userSinceText(user.create_time);
+  API.get("/api/auth/me")
+    .then((data) => {
+      API.save(API.token(), data.user);
+      sinceEl.textContent = userSinceText(data.user.create_time);
+    })
+    .catch(() => {});
+
   logoutBtn.addEventListener("click", () => API.logout());
 
   function nowText() {

@@ -4,10 +4,9 @@ app:
   port: 8000
 
 database:
-  # 留空 = 使用内嵌 pgserver（本地演示免安装）；线上填写 postgresql://user:pass@host:5432/db
-  url: ""
-  embedded_data_dir: .data/pgdata
-  embedded_port: 55432
+  # 本机已安装的 PostgreSQL（需已启用 pgvector 扩展）
+  # 也可用环境变量 DATABASE_URL 覆盖，例如 postgresql://user:pass@host:5432/db
+  url: "postgresql://postgres:123456@127.0.0.1:5432/rag"
   schema: public
 
 # 向量模型：provider 可选 ollama / openai / local_hash

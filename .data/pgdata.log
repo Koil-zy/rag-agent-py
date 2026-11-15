@@ -16,3 +16,151 @@
 2026-11-14 08:21:33.836 GMT [25368] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.405 s, sync=0.011 s, total=0.450 s; sync files=5, longest=0.003 s, average=0.003 s; distance=3 kB, estimate=3 kB; lsn=0/1604EC8, redo lsn=0/1604E90
 2026-11-14 08:26:33.836 GMT [25368] LOG:  checkpoint starting: time
 2026-11-14 08:26:36.021 GMT [25368] LOG:  checkpoint complete: wrote 22 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.120 s, sync=0.038 s, total=2.185 s; sync files=20, longest=0.003 s, average=0.002 s; distance=31 kB, estimate=31 kB; lsn=0/160CDC0, redo lsn=0/160CD88
+2026-11-14 09:41:45.709 GMT [35696] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:41:45.709 GMT [35696] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:42:00.670 GMT [39064] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:42:00.670 GMT [39064] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:42:06.875 GMT [496] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:42:06.875 GMT [496] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:46:24.078 GMT [57840] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:46:24.078 GMT [57840] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:46:34.813 GMT [54464] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:46:34.813 GMT [54464] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:46:53.794 GMT [59592] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:46:53.794 GMT [59592] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:46:53.875 GMT [11012] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:46:53.875 GMT [11012] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:46:53.939 GMT [44584] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:46:53.939 GMT [44584] FATAL:  invalid value for parameter "TimeZone": "Asia/Shanghai"
+2026-11-14 09:46:54.000 GMT [55908] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:46:54.000 GMT [55908] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:02.426 GMT [45996] ERROR:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:02.426 GMT [45996] STATEMENT:  select count(*) from pg_timezone_names
+2026-11-14 09:47:03.106 GMT [55676] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:03.106 GMT [55676] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:04.092 GMT [27028] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:04.092 GMT [27028] FATAL:  invalid value for parameter "TimeZone": "Etc/UTC"
+2026-11-14 09:47:04.176 GMT [2632] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:04.176 GMT [2632] FATAL:  invalid value for parameter "TimeZone": "Etc/UTC"
+2026-11-14 09:47:04.237 GMT [56584] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:04.237 GMT [56584] FATAL:  invalid value for parameter "TimeZone": "Etc/UTC"
+2026-11-14 09:47:04.300 GMT [53384] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:04.300 GMT [53384] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:05.255 GMT [13976] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:05.255 GMT [13976] FATAL:  invalid value for parameter "TimeZone": "UCT"
+2026-11-14 09:47:05.338 GMT [55928] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:05.338 GMT [55928] FATAL:  invalid value for parameter "TimeZone": "UCT"
+2026-11-14 09:47:05.401 GMT [11748] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:05.401 GMT [11748] FATAL:  invalid value for parameter "TimeZone": "UCT"
+2026-11-14 09:47:05.464 GMT [51828] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:05.464 GMT [51828] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:06.442 GMT [59232] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:06.442 GMT [59232] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:06.525 GMT [59328] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:06.525 GMT [59328] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:06.586 GMT [45544] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:06.586 GMT [45544] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:47:06.647 GMT [50008] LOG:  could not open directory "D:/code/ai-rag-agent/.venv/Lib/site-packages/pgserver/pginstall/share/postgresql/timezone": No such file or directory
+2026-11-14 09:47:06.647 GMT [50008] FATAL:  invalid value for parameter "TimeZone": "UTC"
+2026-11-14 09:51:33.025 GMT [25368] LOG:  checkpoint starting: time
+2026-11-14 09:51:34.097 GMT [25368] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.012 s, sync=0.035 s, total=1.073 s; sync files=11, longest=0.006 s, average=0.004 s; distance=17 kB, estimate=30 kB; lsn=0/1611458, redo lsn=0/1611420
+2026-11-14 09:52:14.943 GMT [57664] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.943 GMT [37588] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.943 GMT [60392] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.945 GMT [48936] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.947 GMT [51416] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.948 GMT [10996] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.948 GMT [37592] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.948 GMT [59924] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.948 GMT [58520] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:52:14.948 GMT [59404] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.793 GMT [50196] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.793 GMT [53216] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.793 GMT [49284] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.798 GMT [57224] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.798 GMT [60312] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.798 GMT [44604] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.798 GMT [49672] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.798 GMT [8820] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.798 GMT [57012] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:53:20.799 GMT [60084] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 09:56:33.097 GMT [25368] LOG:  checkpoint starting: time
+2026-11-14 09:56:34.556 GMT [25368] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.410 s, sync=0.027 s, total=1.460 s; sync files=14, longest=0.003 s, average=0.002 s; distance=22 kB, estimate=29 kB; lsn=0/1616ED0, redo lsn=0/1616E98
+2026-11-14 10:00:31.175 GMT [48108] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.176 GMT [34824] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.180 GMT [19880] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.180 GMT [58800] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.181 GMT [47804] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.181 GMT [39528] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.181 GMT [38544] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.181 GMT [45248] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.181 GMT [59036] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:00:31.182 GMT [40588] LOG:  could not receive data from client: An existing connection was forcibly closed by the remote host.
+	
+2026-11-14 10:01:33.557 GMT [25368] LOG:  checkpoint starting: time
+2026-11-14 10:01:35.225 GMT [25368] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.615 s, sync=0.030 s, total=1.669 s; sync files=16, longest=0.003 s, average=0.002 s; distance=35 kB, estimate=35 kB; lsn=0/161FCD8, redo lsn=0/161FCA0
+2026-11-14 10:06:33.226 GMT [25368] LOG:  checkpoint starting: time
+2026-11-14 10:06:33.873 GMT [25368] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.605 s, sync=0.016 s, total=0.648 s; sync files=7, longest=0.004 s, average=0.003 s; distance=12 kB, estimate=33 kB; lsn=0/1623038, redo lsn=0/1623000
+2026-11-14 10:31:33.875 GMT [25368] LOG:  checkpoint starting: time
+2026-11-14 10:31:34.630 GMT [25368] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.712 s, sync=0.014 s, total=0.756 s; sync files=7, longest=0.003 s, average=0.002 s; distance=14 kB, estimate=31 kB; lsn=0/16269F8, redo lsn=0/16269C0
+2026-11-14 14:28:12.582 GMT [35692] LOG:  could not reserve shared memory region (addr=00000294652B0000) for child 0000000000000FF0: error code 487
+2026-11-15 16:11:24.783 GMT [51832] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-15 16:11:24.784 GMT [51832] LOG:  listening on IPv4 address "127.0.0.1", port 55432
+2026-11-15 16:11:24.840 GMT [40660] LOG:  database system was interrupted; last known up at 2026-11-14 10:31:34 GMT
+2026-11-15 16:11:25.681 GMT [40660] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-11-15 16:11:25.688 GMT [40660] LOG:  redo starts at 0/16269C0
+2026-11-15 16:11:25.688 GMT [40660] LOG:  invalid record length at 0/1626AA8: expected at least 24, got 0
+2026-11-15 16:11:25.688 GMT [40660] LOG:  redo done at 0/1626A70 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-11-15 16:11:25.696 GMT [20092] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-11-15 16:11:25.716 GMT [20092] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.023 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1626AA8, redo lsn=0/1626AA8
+2026-11-15 16:11:25.747 GMT [51832] LOG:  database system is ready to accept connections
+2026-11-15 16:17:26.554 GMT [30080] FATAL:  role "zhour" does not exist
+2026-11-15 17:17:05.281 GMT [51832] LOG:  received fast shutdown request
+2026-11-15 17:17:05.281 GMT [72736] ERROR:  canceling statement due to user request
+2026-11-15 17:17:05.285 GMT [51832] LOG:  aborting any active transactions
+2026-11-15 17:17:05.285 GMT [51832] LOG:  background worker "logical replication launcher" (PID 72736) exited with exit code 1
+2026-11-15 17:17:05.288 GMT [20092] LOG:  shutting down
+2026-11-15 17:17:05.291 GMT [20092] LOG:  checkpoint starting: shutdown immediate
+2026-11-15 17:17:05.311 GMT [20092] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.004 s, total=0.023 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1626B58, redo lsn=0/1626B58
+2026-11-15 17:17:05.320 GMT [51832] LOG:  database system is shut down
+2026-11-15 17:17:13.847 GMT [12948] LOG:  starting PostgreSQL 16.2 on x86_64-pc-mingw64, compiled by gcc.exe (x86_64-posix-seh-rev2, Built by MinGW-W64 project) 12.2.0, 64-bit
+2026-11-15 17:17:13.849 GMT [12948] LOG:  listening on IPv4 address "127.0.0.1", port 55432
+2026-11-15 17:17:13.905 GMT [56444] LOG:  database system was shut down at 2026-11-15 17:17:05 GMT
+2026-11-15 17:17:13.950 GMT [12948] LOG:  database system is ready to accept connections
+2026-11-15 17:18:28.084 GMT [71384] ERROR:  canceling statement due to user request
+2026-11-15 17:18:28.084 GMT [12948] LOG:  received fast shutdown request
+2026-11-15 17:18:28.088 GMT [12948] LOG:  aborting any active transactions
+2026-11-15 17:18:28.088 GMT [12948] LOG:  background worker "logical replication launcher" (PID 71384) exited with exit code 1
+2026-11-15 17:18:28.091 GMT [73596] LOG:  shutting down
+2026-11-15 17:18:28.093 GMT [73596] LOG:  checkpoint starting: shutdown immediate
+2026-11-15 17:18:28.112 GMT [73596] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.005 s, total=0.021 s; sync files=2, longest=0.003 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/1626C08, redo lsn=0/1626C08
+2026-11-15 17:18:28.117 GMT [12948] LOG:  database system is shut down

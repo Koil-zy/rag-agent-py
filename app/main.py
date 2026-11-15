@@ -82,7 +82,8 @@ def _user_from_token(token: str | None) -> dict:
     if not payload:
         raise HTTPException(status_code=401, detail="登录已失效，请重新登录")
     user = db.fetch_one(
-        "SELECT id, phone, role, display_name FROM users WHERE id = %s", (payload["uid"],)
+        "SELECT id, phone, role, display_name, create_time FROM users WHERE id = %s",
+        (payload["uid"],),
     )
     if not user:
         raise HTTPException(status_code=401, detail="账号不存在")
@@ -139,7 +140,7 @@ def api_register(body: RegisterIn) -> dict:
     prefix = "领导" if role == "leader" else "员工"
     user = db.execute(
         "INSERT INTO users (phone, password_hash, role, display_name) VALUES (%s, %s, %s, %s) "
-        "RETURNING id, phone, role, display_name",
+        "RETURNING id, phone, role, display_name, create_time",
         (
             body.phone,
             security.hash_password(body.password),
@@ -162,7 +163,8 @@ def api_login(body: LoginIn) -> dict:
     if not captcha.verify_captcha(body.captcha_id, body.captcha_code):
         raise HTTPException(status_code=400, detail="验证码错误或已过期，请刷新后重试")
     user = db.fetch_one(
-        "SELECT id, phone, role, display_name, password_hash FROM users WHERE phone = %s", (body.phone,)
+        "SELECT id, phone, role, display_name, password_hash, create_time FROM users WHERE phone = %s",
+        (body.phone,),
     )
     if not user or not security.verify_password(body.password, user["password_hash"]):
         security.login_limiter.fail(body.phone)
@@ -171,7 +173,13 @@ def api_login(body: LoginIn) -> dict:
     db.execute("UPDATE users SET last_login_at = now() WHERE id = %s", (user["id"],))
     return {
         "token": security.create_token(user["id"], user["role"], user["phone"]),
-        "user": {"id": user["id"], "phone": user["phone"], "role": user["role"], "display_name": user["display_name"]},
+        "user": {
+            "id": user["id"],
+            "phone": user["phone"],
+            "role": user["role"],
+            "display_name": user["display_name"],
+            "create_time": user["create_time"],
+        },
     }
 
 

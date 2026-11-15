@@ -1,4 +1,4 @@
-"""测试环境：独立 pgdata + 本地哈希向量，避免依赖 Ollama 与污染演示库。"""
+"""测试环境：独立 rag_test 库 + 本地哈希向量，避免依赖 Ollama 与污染演示库。"""
 from __future__ import annotations
 
 import os
@@ -12,8 +12,9 @@ DATA_DIR = ROOT / ".data"
 DATA_DIR.mkdir(exist_ok=True)
 
 _cfg = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
-_cfg["database"]["embedded_data_dir"] = str(DATA_DIR / "test_pgdata")
-_cfg["database"]["embedded_port"] = 55433
+_cfg["database"]["url"] = os.environ.get(
+    "TEST_DATABASE_URL", "postgresql://postgres:123456@127.0.0.1:5432/rag_test"
+)
 _cfg["embedding"]["provider"] = "local_hash"
 _cfg["embedding"]["model"] = "test-local-hash"
 _cfg["llm"]["provider"] = "ollama"

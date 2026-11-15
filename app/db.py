@@ -1,16 +1,13 @@
 """数据库连接与表结构初始化（PostgreSQL + pgvector）。
 
-本地演示：未配置 database.url 时用 pgserver 内嵌拉起 PostgreSQL 16 + pgvector。
-线上：直接填 DATABASE_URL / config.database.url，代码零改动。
+连接串来源优先级：环境变量 DATABASE_URL > config.yaml 的 database.url。
+本地与线上都连接同一套 PostgreSQL 服务，需提前安装 pgvector 扩展。
 """
 from __future__ import annotations
 
 import logging
 import os
-import subprocess
-import threading
 from contextlib import contextmanager
-from pathlib import Path
 from typing import Any, Iterator
 
 import psycopg
@@ -20,115 +17,23 @@ from . import config
 
 logger = logging.getLogger(__name__)
 
-_lock = threading.Lock()
-_embedded_url: str | None = None
 _schema_ready = False
-
-DEFAULT_EMBEDDED_PORT = 55432
-
-
-def _pg_bin(name: str) -> Path:
-    import pgserver._commands as pc
-
-    suffix = ".exe" if os.name == "nt" else ""
-    return pc.POSTGRES_BIN_PATH / f"{name}{suffix}"
-
-
-def _read_embedded_port(pgdata: Path) -> int | None:
-    pid_file = pgdata / "postmaster.pid"
-    if not pid_file.exists():
-        return None
-    try:
-        lines = pid_file.read_text(encoding="utf-8").splitlines()
-        return int(lines[3])
-    except (ValueError, IndexError):
-        return None
-
-
-def _start_embedded(pgdata: Path) -> str:
-    """内嵌 PostgreSQL：initdb + pg_ctl 启动。
-
-    日志写到 pgdata 之外，避免 Windows 下 crash recovery 时 pg_ctl 与 postgres
-    争抢 pgdata/log 句柄导致启动超时。
-    """
-    pgdata.mkdir(parents=True, exist_ok=True)
-    if not (pgdata / "PG_VERSION").exists():
-        logger.info("初始化内嵌 PostgreSQL：%s", pgdata)
-        subprocess.run(
-            [
-                str(_pg_bin("initdb")),
-                "-D", str(pgdata),
-                "--auth=trust", "--auth-local=trust",
-                "--encoding=utf8", "-U", "postgres",
-            ],
-            check=True,
-        )
-    port = int(config.get("database.embedded_port", DEFAULT_EMBEDDED_PORT))
-    # 日志文件名带上数据目录名，避免主库与测试库（test_pgdata）共用同一个
-    # 日志文件时，Windows 下打开句柄冲突导致 pg_ctl 启动失败。
-    log_path = pgdata.parent / f"{pgdata.name}.log"
-    status = subprocess.run(
-        [str(_pg_bin("pg_ctl")), "-D", str(pgdata), "status"], capture_output=True
-    )
-    if status.returncode != 0:
-        logger.info("启动内嵌 PostgreSQL：%s (port=%s)", pgdata, port)
-        subprocess.run(
-            [
-                str(_pg_bin("pg_ctl")), "-D", str(pgdata),
-                "-o", f'-h 127.0.0.1 -p {port}',
-                "-l", str(log_path), "-w", "-t", "60", "start",
-            ],
-            check=True,
-        )
-    else:
-        port = _read_embedded_port(pgdata) or port
-        logger.info("内嵌 PostgreSQL 已在运行：%s (port=%s)", pgdata, port)
-    return f"postgresql://postgres@127.0.0.1:{port}/postgres"
-
-
-def _stop_embedded() -> None:
-    pgdata = config.get_path("database.embedded_data_dir", config.ROOT / ".data" / "pgdata")
-    try:
-        subprocess.run(
-            [str(_pg_bin("pg_ctl")), "-D", str(pgdata), "-m", "fast", "-w", "-t", "20", "stop"],
-            capture_output=True,
-        )
-    except Exception:  # noqa: BLE001
-        pass
-
-
-def _ensure_embedded() -> str:
-    """确保内嵌 PostgreSQL 在运行（被其它进程误停后自动拉起）。"""
-    global _embedded_url
-    external = os.environ.get("DATABASE_URL") or config.get("database.url")
-    if external:
-        return str(external)
-    with _lock:
-        pgdata = config.get_path("database.embedded_data_dir", config.ROOT / ".data" / "pgdata")
-        _embedded_url = _start_embedded(pgdata)
-        return _embedded_url
 
 
 def database_url() -> str:
-    global _embedded_url
     url = os.environ.get("DATABASE_URL") or config.get("database.url")
-    if url:
-        return str(url)
-    if _embedded_url is None:
-        return _ensure_embedded()
-    return _embedded_url
+    if not url:
+        raise RuntimeError(
+            "未配置数据库连接：请设置环境变量 DATABASE_URL 或 config.yaml 的 database.url"
+        )
+    return str(url)
 
 
 @contextmanager
 def connect() -> Iterator[psycopg.Connection]:
-    url = database_url()
-    try:
-        conn = psycopg.connect(url, row_factory=dict_row, autocommit=True, connect_timeout=5)
-    except psycopg.OperationalError:
-        logger.warning("数据库连接失败，尝试重新拉起内嵌 PostgreSQL")
-        conn = psycopg.connect(
-            _ensure_embedded(), row_factory=dict_row, autocommit=True, connect_timeout=15
-        )
+    conn = psycopg.connect(
+        database_url(), row_factory=dict_row, autocommit=True, connect_timeout=5
+    )
     try:
         with conn:
             yield conn
@@ -145,10 +50,24 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash TEXT        NOT NULL,
     role          VARCHAR(16) NOT NULL DEFAULT 'employee',
     display_name  VARCHAR(64),
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+    create_time   TIMESTAMPTZ NOT NULL DEFAULT now(),
     last_login_at TIMESTAMPTZ,
     CONSTRAINT users_role_check CHECK (role IN ('employee', 'leader'))
 );
+
+-- 兼容旧库：users.created_at 重命名为 create_time
+DO $$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = current_schema() AND table_name = 'users' AND column_name = 'created_at'
+    ) AND NOT EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = current_schema() AND table_name = 'users' AND column_name = 'create_time'
+    ) THEN
+        ALTER TABLE users RENAME COLUMN created_at TO create_time;
+    END IF;
+END $$;
 
 CREATE TABLE IF NOT EXISTS documents (
     id             BIGSERIAL PRIMARY KEY,
@@ -244,9 +163,3 @@ def execute(sql: str, params: tuple | dict | None = None) -> dict[str, Any] | No
     with connect() as conn:
         cursor = conn.execute(sql, params)
         return cursor.fetchone() if cursor.description else None
-
-
-if __name__ == "__main__":
-    # 显式停止内嵌 PostgreSQL：python -m app.db
-    _stop_embedded()
-    print("已停止内嵌 PostgreSQL")

@@ -10,7 +10,7 @@
 | 组件 | 说明 | 内存占用（参考） |
 | --- | --- | --- |
 | app（FastAPI + uvicorn） | 单进程即可，1 worker | 150–300 MB |
-| PostgreSQL 16 + pgvector | 也可用内嵌 pgserver（演示用） | 100–200 MB |
+| PostgreSQL 16+ + pgvector | 需本机安装 PostgreSQL 并启用 pgvector 扩展 | 100–200 MB |
 | Ollama + bge-m3 | 向量化，约 1.2 GB 模型 | 1.5–2 GB |
 | Ollama + deepseek-r1:1.5b | 问答，约 1.1 GB 模型 | 1.5–2.5 GB |
 | Nginx（可选） | 反代 + HTTPS + SSE 不缓冲 | 20 MB |
@@ -23,7 +23,7 @@
 
 | 方案 | 组成 | 参考成本 | 适用 |
 | --- | --- | --- | --- |
-| A. 单机 + 内嵌 PG（最省） | 1 台云服务器，`uvicorn` 直接跑，PG 用 pgserver 内嵌 | 约 ¥60–120/月（2C4G 轻量服务器） | 内部 10–30 人、演示/POC |
+| A. 单机 + 本机 PG（最省） | 1 台云服务器，安装 PostgreSQL + pgvector 后 `uvicorn` 直接跑 | 约 ¥60–120/月（2C4G 轻量服务器） | 内部 10–30 人、演示/POC |
 | B. 单机 + Docker Compose（推荐） | 同机 3 容器：app / pgvector / ollama | 约 ¥120–300/月（4C8G） | 内部 30–100 人 |
 | C. 托管 PG + Ollama 单机 | 云数据库 PG（含 pgvector）+ 单机 Ollama + app | 云 PG 约 ¥100–200/月 + 2C4G 约 ¥60–120/月 | 要求数据库托管、有备份 SLA |
 
@@ -50,9 +50,14 @@ ollama pull deepseek-r1:1.5b
 .venv/Scripts/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-- 数据库不填 `database.url` 时，自动用内嵌 PostgreSQL（pgserver 自带，无需安装）。
-- 数据目录：`.data/pgdata`；密钥：`.data/secret.key`（首次自动生成）。
-- 内嵌 PostgreSQL 随服务自动拉起且常驻：Web 服务或评测进程退出不会停库；连接失败会自动重启数据库。需要手动停库时执行 `python -m app.db`。
+- 数据库需提前安装 PostgreSQL（16+）并启用 pgvector 扩展，然后建库：
+  ```bash
+  createdb -U postgres rag
+  psql -U postgres -d rag -c "CREATE EXTENSION IF NOT EXISTS vector;"
+  ```
+- 在 `config.yaml` 的 `database.url` 填写连接串（也可用环境变量 `DATABASE_URL` 覆盖），例如
+  `postgresql://postgres:密码@127.0.0.1:5432/rag`。代码不再内嵌启动数据库。
+- 密钥 `.data/secret.key` 首次自动生成；旧的内嵌数据目录 `.data/pgdata` 已不再使用，可自行删除。
 
 生产建议用 `nssm`/`systemd` 守护进程，示例（Linux）：
 
@@ -168,7 +173,7 @@ llm:
 - [ ] 生产库设置强密码；`pg_hba.conf` 仅允许内网网段。
 - [ ] Nginx 上 HTTPS；登录接口加限流（当前应用内已限制连续失败 5 次锁定 5 分钟）。
 - [ ] 演示账号 `13800000001/13800000002` 上线前删除或改密。
-- [ ] 修改 `config.yaml` 的 `registration.leader_invite_codes`，换成一次性/定期轮换的邀请码；邀请码泄露后立即替换。
+- [ ] 修改 `config.yaml` 的 `registration.leader_invite_codes`，换成一次性/定期轮换的邀请码；邀请码泄露后立即替换。当前默认邀请码：LEADER-INVITE-2026
 - [ ] 每日备份：`pg_dump -Fc rag > backup/rag-$(date +%F).dump`；保留 7–30 天。
 - [ ] 日志与审计：`guard_events` 表记录拦截/校验事件，管理页 `/admin` 可查。
 - [ ] 健康检查：`GET /api/health`（返回模型、文档数、切片数、阈值）。
